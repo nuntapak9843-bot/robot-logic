@@ -212,9 +212,6 @@ except AssertionError as e:
     print("ไม่ผ่าน ❌:", e)
 `)
   }
-}
-
-        }
       },
       {
         id: 3,
