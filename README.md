@@ -193,7 +193,6 @@ except AssertionError as e:
         }
       },
       {
-{
   id: 2,
   title: "ด่านที่ 2: ตัวดำเนินการทางคณิตศาสตร์",
   keywords: ["math", "+ - * /", "คณิต"],
@@ -212,6 +211,9 @@ try:
 except AssertionError as e:
     print("ไม่ผ่าน ❌:", e)
 `)
+  }
+}
+
         }
       },
       {
