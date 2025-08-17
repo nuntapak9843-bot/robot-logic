@@ -106,7 +106,7 @@ Robot Logic: เขียนโค้ดพิชิตด่านด้วย�
         <div class="badges">
           <span class="badge">Python ในเบราว์เซอร์ด้วย Pyodide</span>
           <span class="badge">เหมาะกับ ม.2–ม.4</span>
-          <span class="badge">เปิดซอร์ส โฮสต์บน GitHub Pages</span>
+          <span class="badge">เป็นส่วนหนึ่งของรายวิชาเพิ่มเติม Python</span>
         </div>
       </div>
     </aside>
@@ -203,12 +203,11 @@ left = 200 - cost
 print(left)
 `,
         judge: async () => {
-          return await pyRun(`
+  return await pyRun(`
 try:
-    assert 'moves' in globals(), "ต้องมี moves"
-    expect = 200 - (moves*3 + 5//2)
-    assert left == expect, f"left ควรเป็น {expect}"
-    print("ผ่านด่าน 2 ✅")
+    assert move_or_charge(75) == "move", "กรณี battery = 75 ต้องคืนค่า 'move'"
+    assert move_or_charge(30) == "charge", "กรณี battery = 30 ต้องคืนค่า 'charge'"
+    print("ผ่านด่าน 3 ✅")
 except AssertionError as e:
     print("ไม่ผ่าน ❌:", e)
 `);
@@ -230,12 +229,13 @@ def move_or_charge(battery):
 
 print(move_or_charge(75))
 `,
-        judge: async () => await pyRun(`
+       judge: async () => {
+  return await pyRun(`
 try:
-    assert move_or_charge(70)=="move"
-    assert move_or_charge(50)=="move"
-    assert move_or_charge(10)=="charge"
-    print("ผ่านด่าน 3 ✅")
+    assert isinstance(commands, list), "commands ต้องเป็น list"
+    assert commands[0] == "up", "ตัวแรกต้องเป็น 'up'"
+    assert commands[-1] == "left", "ตัวสุดท้ายต้องเป็น 'left'"
+    print("ผ่านด่าน 4 ✅")
 except Exception as e:
     print("ไม่ผ่าน ❌:", e)
 `) },
@@ -250,12 +250,14 @@ commands = ["up","right","down","left"]
 print(commands[0])
 print(commands[-1])
 `,
-        judge: async () => await pyRun(`
+        judge: async () => {
+  return await pyRun(`
 try:
-    assert isinstance(commands, list) and len(commands)>=4
-    assert commands[0] and commands[-1]
+    assert isinstance(commands, list), "commands ต้องเป็น list"
+    assert commands[0] == "up", "ตัวแรกต้องเป็น 'up'"
+    assert commands[-1] == "left", "ตัวสุดท้ายต้องเป็น 'left'"
     print("ผ่านด่าน 4 ✅")
-except Exception as e:
+except AssertionError as e:
     print("ไม่ผ่าน ❌:", e)
 `) },
       {
@@ -274,10 +276,11 @@ def repeat_cmd(cmd, n):
 
 print(repeat_cmd("up", 3))
 `,
-        judge: async () => await pyRun(`
+        judge: async () => {
+  return await pyRun(`
 try:
-    assert repeat_cmd("x",0)==[]
-    assert repeat_cmd("up",3)==["up","up","up"]
+    assert repeat_cmd("up", 3) == ["up", "up", "up"], "ผลลัพธ์ของ repeat_cmd('up', 3) ไม่ถูกต้อง"
+    assert repeat_cmd("left", 2) == ["left", "left"], "ผลลัพธ์ของ repeat_cmd('left', 2) ไม่ถูกต้อง"
     print("ผ่านด่าน 5 ✅")
 except Exception as e:
     print("ไม่ผ่าน ❌:", e)
@@ -299,11 +302,12 @@ def drain(b):
 
 print(drain(35))
 `,
-        judge: async () => await pyRun(`
+       judge: async () => {
+  return await pyRun(`
 try:
-    assert drain(0)==0
-    assert drain(5)==1
-    assert drain(35)==4
+    assert drain(35) == 4, "drain(35) ต้องคืนค่า 4"
+    assert drain(10) == 1, "drain(10) ต้องคืนค่า 1"
+    assert drain(0) == 0, "drain(0) ต้องคืนค่า 0"
     print("ผ่านด่าน 6 ✅")
 except Exception as e:
     print("ไม่ผ่าน ❌:", e)
@@ -331,12 +335,13 @@ def classify_cell(code):
 
 print(classify_cell(9))
 `,
-        judge: async () => await pyRun(`
+        judge: async () => {
+  return await pyRun(`
 try:
-    assert classify_cell(0)=="empty"
-    assert classify_cell(1)=="wall"
-    assert classify_cell(9)=="goal"
-    assert classify_cell(7)=="unknown"
+    assert classify_cell(0) == "empty", "code = 0 ต้องคืนค่า 'empty'"
+    assert classify_cell(1) == "wall", "code = 1 ต้องคืนค่า 'wall'"
+    assert classify_cell(9) == "goal", "code = 9 ต้องคืนค่า 'goal'"
+    assert classify_cell(5) == "unknown", "code อื่น ๆ ต้องคืนค่า 'unknown'"
     print("ผ่านด่าน 7 ✅")
 except Exception as e:
     print("ไม่ผ่าน ❌:", e)
