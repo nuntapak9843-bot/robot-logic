@@ -193,29 +193,25 @@ except AssertionError as e:
         }
       },
       {
-        id: 2,
-        title: "ด่านที่ 2: ตัวดำเนินการทางคณิตศาสตร์",
-        keywords: ["math","+ - * /","คณิต"],
-        desc: `คำนวณพลังงานหลังการเคลื่อนที่:
-ให้สร้างตัวแปร <code>moves</code> เป็นจำนวนก้าวที่หุ่นยนต์เคลื่อน เช่น 12
-คำนวณ <code>cost</code> = moves*3 + 5 // 2 (ปัดเศษลง) และพลังงานคงเหลือ <code>left</code> = 200 - cost
+{
+  id: 2,
+  title: "ด่านที่ 2: ตัวดำเนินการทางคณิตศาสตร์",
+  keywords: ["math", "+ - * /", "คณิต"],
+  desc: `คำนวณพลังงานหลังการเคลื่อนที่:
+ให้สร้างตัวแปร moves เป็นจำนวนก้าวที่หุ่นยนต์เคลื่อน เช่น 12
+คำนวณ cost = moves * 3 + 5 // 2 (ปัดเศษลง) และพลังงานคงเหลือ left = 200 - cost
 พิมพ์ left`,
-        starter: `# TODO: คำนวณพลังงานคงเหลือ
-moves = 12
-cost = moves * 3 + (5 // 2)
-left = 200 - cost
-print(left)
-`,
-        judge: async () => {
-          return await pyRun(`
+  starter: `# TODO: คำนวณพลังงานคงเหลือ`,
+  judge: async () => {
+    return await pyRun(`
 try:
     assert 'moves' in globals(), "ต้องมี moves"
-    expect = 200 - (moves*3 + 5//2)
+    expect = 200 - (moves * 3 + 5 // 2)
     assert left == expect, f"left ควรเป็น {expect}"
     print("ผ่านด่าน 2 ✅")
 except AssertionError as e:
     print("ไม่ผ่าน ❌:", e)
-`);
+`)
         }
       },
       {
