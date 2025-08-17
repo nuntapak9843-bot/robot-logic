@@ -248,88 +248,59 @@ except Exception as e:
 `)
        },
       {
-        id: 5,
-        title: "ด่านที่ 5: for loop",
-        keywords: ["for","ลูป"],
-        desc: `สร้างฟังก์ชัน <code>repeat_cmd(cmd, n)</code> คืนค่า List ที่มี <code>cmd</code> ซ้ำกัน <code>n</code> ครั้ง
+  id: 5,
+  title: "ด่านที่ 5: for loop",
+  keywords: ["for", "ลูป"],
+  desc: `สร้างฟังก์ชัน repeat_cmd(cmd, n) คืนค่า List ที่มี cmd ซ้ำกัน n ครั้ง
 ตัวอย่าง: repeat_cmd("up", 3) -> ["up","up","up"]`,
-        starter: `# TODO: เขียนฟังก์ชันด้วย for
-
-def repeat_cmd(cmd, n):
-    result = []
-    for _ in range(n):
-        result.append(cmd)
-    return result
-
-print(repeat_cmd("up", 3))
-`,
-        judge: async () => await pyRun(`
+  starter: `# TODO: เขียนฟังก์ชันด้วย for`,
+  judge: async () => await pyRun(`
 try:
-    assert repeat_cmd("x",0)==[]
-    assert repeat_cmd("up",3)==["up","up","up"]
+    assert repeat_cmd("x", 0) == [], "กรณี repeat_cmd('x', 0) ต้องคืนค่า []"
+    assert repeat_cmd("up", 3) == ["up", "up", "up"], "กรณี repeat_cmd('up', 3) ต้องคืนค่า ['up','up','up']"
     print("ผ่านด่าน 5 ✅")
 except Exception as e:
     print("ไม่ผ่าน ❌:", e)
-`) },
-      {
-        id: 6,
-        title: "ด่านที่ 6: while loop",
-        keywords: ["while","ลูป"],
-        desc: `สร้างฟังก์ชัน <code>drain(b)</code> ลดค่าแบตทีละ 10 จนกว่าจะ ≤ 0 และคืนค่าจำนวนครั้งที่ลดลง
+`)
+      },
+     {
+  id: 6,
+  title: "ด่านที่ 6: while loop",
+  keywords: ["while", "ลูป"],
+  desc: `สร้างฟังก์ชัน drain(b) ลดค่าแบตทีละ 10 จนกว่าจะ ≤ 0 และคืนค่าจำนวนครั้งที่ลดลง
 ตัวอย่าง: drain(35) -> 4 (35→25→15→5→-5)`,
-        starter: `# TODO: ใช้ while เพื่อนับรอบการลด
-
-def drain(b):
-    count = 0
-    while b > 0:
-        b -= 10
-        count += 1
-    return count
-
-print(drain(35))
-`,
-        judge: async () => await pyRun(`
+  starter: `# TODO: ใช้ while เพื่อนับรอบการลด`,
+  judge: async () => await pyRun(`
 try:
-    assert drain(0)==0
-    assert drain(5)==1
-    assert drain(35)==4
+    assert drain(0) == 0, "drain(0) ต้องคืนค่า 0"
+    assert drain(5) == 1, "drain(5) ต้องคืนค่า 1"
+    assert drain(35) == 4, "drain(35) ต้องคืนค่า 4"
     print("ผ่านด่าน 6 ✅")
 except Exception as e:
     print("ไม่ผ่าน ❌:", e)
-`) },
+`)
+      },
       {
-        id: 7,
-        title: "ด่านที่ 7: if – elif – else",
-        keywords: ["elif","เงื่อนไขหลายทาง"],
-        desc: `สร้างฟังก์ชัน <code>classify_cell(code)</code> ดังนี้:
+  id: 7,
+  title: "ด่านที่ 7: if – elif – else",
+  keywords: ["elif", "เงื่อนไขหลายทาง"],
+  desc: `สร้างฟังก์ชัน classify_cell(code) ดังนี้:
 - ถ้า code == 0 คืนค่า "empty"
 - ถ้า code == 1 คืนค่า "wall"
 - ถ้า code == 9 คืนค่า "goal"
 - อื่นๆ คืนค่า "unknown"`,
-        starter: `# TODO: เขียนฟังก์ชันด้วย if-elif-else
-
-def classify_cell(code):
-    if code == 0:
-        return "empty"
-    elif code == 1:
-        return "wall"
-    elif code == 9:
-        return "goal"
-    else:
-        return "unknown"
-
-print(classify_cell(9))
-`,
-        judge: async () => await pyRun(`
+  starter: `# TODO: เขียนฟังก์ชันด้วย if-elif-else`,
+  judge: async () => await pyRun(`
 try:
-    assert classify_cell(0)=="empty"
-    assert classify_cell(1)=="wall"
-    assert classify_cell(9)=="goal"
-    assert classify_cell(7)=="unknown"
+    assert classify_cell(0) == "empty", "code = 0 ต้องคืนค่า 'empty'"
+    assert classify_cell(1) == "wall", "code = 1 ต้องคืนค่า 'wall'"
+    assert classify_cell(9) == "goal", "code = 9 ต้องคืนค่า 'goal'"
+    assert classify_cell(7) == "unknown", "code อื่น ๆ ต้องคืนค่า 'unknown'"
     print("ผ่านด่าน 7 ✅")
 except Exception as e:
     print("ไม่ผ่าน ❌:", e)
-`) }
+`)
+}
     ];
 
     function renderMenu(filter=""){
