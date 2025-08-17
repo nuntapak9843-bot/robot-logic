@@ -214,30 +214,22 @@ except AssertionError as e:
   }
       },
       {
-        id: 3,
-        title: "ด่านที่ 3: if – else",
-        keywords: ["if","else","เงื่อนไข"],
-        desc: `สร้างฟังก์ชัน <code>move_or_charge(battery)</code>
-ถ้าแบตเตอรี่ ≥ 50 ให้คืนค่า <code>"move"</code> มิฉะนั้นคืนค่า <code>"charge"</code>`,
-        starter: `# TODO: สร้างฟังก์ชันตามเงื่อนไข
-
-def move_or_charge(battery):
-    if battery >= 50:
-        return "move"
-    else:
-        return "charge"
-
-print(move_or_charge(75))
-`,
-        judge: async () => await pyRun(`
+  id: 3,
+  title: "ด่านที่ 3: if – else",
+  keywords: ["if", "else", "เงื่อนไข"],
+  desc: `สร้างฟังก์ชัน move_or_charge(battery)
+ถ้าแบตเตอรี่ ≥ 50 ให้คืนค่า "move" มิฉะนั้นคืนค่า "charge"`,
+  starter: `# TODO: สร้างฟังก์ชันตามเงื่อนไข`,
+  judge: async () => await pyRun(`
 try:
-    assert move_or_charge(70)=="move"
-    assert move_or_charge(50)=="move"
-    assert move_or_charge(10)=="charge"
+    assert move_or_charge(70) == "move"
+    assert move_or_charge(50) == "move"
+    assert move_or_charge(10) == "charge"
     print("ผ่านด่าน 3 ✅")
 except Exception as e:
     print("ไม่ผ่าน ❌:", e)
-`) },
+`)
+ },
       {
         id: 4,
         title: "ด่านที่ 4: List",
