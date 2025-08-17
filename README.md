@@ -231,24 +231,22 @@ except Exception as e:
 `)
  },
       {
-        id: 4,
-        title: "ด่านที่ 4: List",
-        keywords: ["list","รายการ"],
-        desc: `สร้างรายการคำสั่ง <code>commands</code> ที่มีอย่างน้อย 4 รายการ เช่น "up", "right", "down", "left"
+  id: 4,
+  title: "ด่านที่ 4: List",
+  keywords: ["list", "รายการ"],
+  desc: `สร้างรายการคำสั่ง commands ที่มีอย่างน้อย 4 รายการ เช่น "up", "right", "down", "left"
 พิมพ์คำสั่งตัวแรกและตัวสุดท้าย`,
-        starter: `# TODO: สร้าง list ของคำสั่งแล้วพิมพ์ตัวแรก/สุดท้าย
-commands = ["up","right","down","left"]
-print(commands[0])
-print(commands[-1])
-`,
-        judge: async () => await pyRun(`
+  starter: `# TODO: สร้าง list ของคำสั่งแล้วพิมพ์ตัวแรก/สุดท้าย`,
+  judge: async () => await pyRun(`
 try:
-    assert isinstance(commands, list) and len(commands)>=4
-    assert commands[0] and commands[-1]
+    assert isinstance(commands, list) and len(commands) >= 4, "commands ต้องเป็น list ที่มีอย่างน้อย 4 รายการ"
+    assert commands[0], "ต้องพิมพ์คำสั่งตัวแรก"
+    assert commands[-1], "ต้องพิมพ์คำสั่งตัวสุดท้าย"
     print("ผ่านด่าน 4 ✅")
 except Exception as e:
     print("ไม่ผ่าน ❌:", e)
-`) },
+`)
+       },
       {
         id: 5,
         title: "ด่านที่ 5: for loop",
